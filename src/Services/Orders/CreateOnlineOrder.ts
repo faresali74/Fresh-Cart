@@ -10,13 +10,15 @@ interface OnlineOrderResponse {
   };
 }
 
+const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
+
 export async function createOnlineOrder(
   cartId: string,
   token: string,
   shippingAddress: ShippingAddress,
 ): Promise<string> {
   const response = await fetch(
-    `${BASE_URL}/orders/checkout-session/${cartId}?url=http://localhost:3000`,
+    `${BASE_URL}/orders/checkout-session/${cartId}?url=${APP_URL}`,
     {
       method: "POST",
       headers: {
