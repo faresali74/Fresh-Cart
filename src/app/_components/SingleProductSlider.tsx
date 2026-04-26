@@ -3,9 +3,9 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Navigation, Thumbs } from "swiper/modules";
+import { Swiper as SwiperType } from "swiper"; // ✅ import الـ type
 import { Product } from "@/Services/Products/getAllProducts";
 
-// Styles
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
@@ -13,7 +13,7 @@ import "swiper/css/thumbs";
 import styles from "./SingleProductSlider.module.css";
 
 export default function SingleProductSlider({ product }: { product: Product }) {
-  const [thumbsSwiper, setThumbsSwiper] = useState<any>(null);
+  const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
 
   const images =
     product?.images?.length > 0

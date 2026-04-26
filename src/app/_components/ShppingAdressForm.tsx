@@ -1,5 +1,6 @@
 "use client";
 import { getUserAddresses } from "@/Services/user/Adresses/GetUserAdressrs";
+import { Address } from "@/Services/user/Adresses/AddAdress"; // ✅ import الـ interface
 import { useSession } from "next-auth/react";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
@@ -21,10 +22,9 @@ export default function ShippingAddressForm({
   setSelectedAddressId: (id: string | null) => void;
 }) {
   const { data: session } = useSession();
-  const [addresses, setAddresses] = useState<any[]>([]);
+  const [addresses, setAddresses] = useState<Address[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  // منطق التحقق هل المستخدم اختار عنوان جديد
   const isNewAddress = selectedAddressId === "new";
 
   useEffect(() => {
@@ -35,11 +35,13 @@ export default function ShippingAddressForm({
       try {
         setIsLoading(true);
         const result = await getUserAddresses(token);
-        if (result && result.data) {
+        if (result?.data) {
           setAddresses(result.data);
         }
-      } catch (error: any) {
-        toast.error(error.message || "Failed to load addresses");
+      } catch (error) {
+        const message =
+          error instanceof Error ? error.message : "Failed to load addresses";
+        toast.error(message);
       } finally {
         setIsLoading(false);
       }
@@ -61,7 +63,7 @@ export default function ShippingAddressForm({
       </div>
 
       <div className="p-6 space-y-5">
-        {/* Saved Addresses Section */}
+        {/* Saved Addresses */}
         <div className="pb-5 border-b border-gray-100">
           <div className="flex items-center gap-2 mb-3">
             <FiBookmark className="text-emerald-500" />
@@ -156,7 +158,7 @@ export default function ShippingAddressForm({
           </div>
         </div>
 
-        {/* Form Fields - Disabled if not New Address */}
+        {/* Form Fields */}
         <div
           className={`space-y-4 transition-opacity ${!isNewAddress ? "opacity-50" : "opacity-100"}`}
         >
@@ -190,7 +192,7 @@ export default function ShippingAddressForm({
               className="w-full px-4 py-3.5 border-2 rounded-xl focus:outline-none border-gray-200 focus:border-emerald-500 transition-all resize-none disabled:cursor-not-allowed"
               placeholder="Street name, building number..."
               name="details"
-            ></textarea>
+            />
           </div>
 
           <div>

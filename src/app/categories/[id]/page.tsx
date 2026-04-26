@@ -8,18 +8,7 @@ import {
 import { getProductsByCategory } from "@/Services/Products/getProductByCategory";
 import PageHeader from "@/app/_components/PageHeader";
 import AddToCartButton from "@/app/_components/AddToCartBtn";
-
-export interface Product {
-  _id: string;
-  title: string;
-  imageCover: string;
-  price: number;
-  priceAfterDiscount?: number;
-  ratingsAverage: number;
-  category: {
-    name: string;
-  };
-}
+import { Product } from "@/Services/Products/getAllProducts"; // ✅ استخدم الـ shared interface
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -34,7 +23,7 @@ export async function generateMetadata({ params }: PageProps) {
 }
 
 export default async function CategoryProductsPage({ params }: PageProps) {
-  const { id } = await params; // فك الـ Promise
+  const { id } = await params;
   const products = await getProductsByCategory(id);
   const categoryName =
     products?.length > 0 ? products[0].category.name : "Category";

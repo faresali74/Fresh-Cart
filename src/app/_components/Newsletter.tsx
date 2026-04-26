@@ -1,6 +1,3 @@
-"use client";
-
-import React from "react";
 import { FiMail, FiArrowRight, FiTag, FiTruck } from "react-icons/fi";
 import { FaLeaf, FaApple, FaGooglePlay, FaStar } from "react-icons/fa";
 
