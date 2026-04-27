@@ -48,7 +48,7 @@ src/
 
 # Clone the repository
 
-git clone https://github.com/your-username/freshcart.git
+git clone https://github.com/faresali74/Fresh-Cart.git
 
 # Navigate to the project directory
 
@@ -62,10 +62,12 @@ Create a .env.local file in the root directory:
 Code snippet
 NEXTAUTH_URL=http://localhost:3000
 NEXTAUTH_SECRET=your_secret_key
-API_BASE_URL=https://ecommerce.routemisr.com/api/v1 4. Running the App
-Bash
-npm run dev
-Access the application at http://localhost:3000.
+API_BASE_URL=https://ecommerce.routemisr.com/api/v1
+
+4. Running the App
+   Bash
+   npm run dev
+   Access the application at http://localhost:3000.
 
 🏗️ Engineering Decisions
 Server/Client Hybrid Architecture: Utilized Server Components for initial data fetching to reduce bundle size, while keeping interactive logic within Client Components.
