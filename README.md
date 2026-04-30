@@ -32,7 +32,7 @@ A high-performance, production-ready e-commerce application built with a modern 
 ## 🏗️ Architecture Highlights
 
 **Server/Client Hybrid**
-Leverages Next.js Server Components for data fetching and SEO, while isolating interactivity within lean Client Components.
+Leverages Next.js Server Components for data fetching and SEO optmization, while isolating interactivity within lean Client Components.
 
 **Factory Method Pattern**
 Payment processing is abstracted behind a `PaymentFactory`, making it trivial to add new gateways (Stripe, PayPal) without touching UI logic.
